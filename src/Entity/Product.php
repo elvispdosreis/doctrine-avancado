@@ -2,26 +2,38 @@
 
 namespace SON\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
- * @Entity
- * @HasLifecycleCallbacks
- * @Table(name="products")
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="products")
  */
 class Product
 {
     use TimestampableTrait;
 
     /**
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Price", mappedBy="product",cascade={"persist"})
+     */
+    private $prices;
+
+    public function __construct()
+    {
+        $this->prices = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -59,6 +71,13 @@ class Product
         return $this;
     }
 
+    public function addPrice(Price $price){
+        $this->prices->add($price);
+        return $this;
+    }
 
+    public function getPrices(){
+        return $this->prices;
+    }
 
 }

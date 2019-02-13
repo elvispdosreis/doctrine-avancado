@@ -1,0 +1,3 @@
+https://api.mercadolibre.com/items?ids=MLB1105187629&attributes=id,category_id,official_store_id,title,permalink,original_price,available_quantity,base_price,price,status,sub_status,listing_type_id,buying_mode,condition,variations,attributes,shipping,sold_quantity
+vendor\bin\doctrine orm:validate-schema
+vendor\bin\doctrine orm:schema-tool:update --dump-sql
