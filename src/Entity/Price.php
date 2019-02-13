@@ -11,7 +11,7 @@ namespace SON\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="SON\Entity\PriceRepository")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="prices")
  */
@@ -27,7 +27,7 @@ class Price
     private $id;
 
     /**
-     *  @ORM\ManyToOne(targetEntity="Product", inversedBy="prices", cascade={"persist"})
+     *  @ORM\ManyToOne(targetEntity="\SON\Entity\Product", inversedBy="prices", cascade={"persist"})
      */
     private $product;
 

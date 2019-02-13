@@ -6,7 +6,7 @@
  * Time: 17:09
  */
 
-namespace SON\Repository;
+namespace SON\Entity;
 
 
 class PriceRepository extends AbstractRepository

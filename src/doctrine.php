@@ -12,12 +12,13 @@ $dbParams = [
     'driver' => 'pdo_mysql',
     'user' => 'root',
     'password' => '101010',
-    'dbname' => 'son_doctrine_avanc_curso'
+    'dbname' => 'son_doctrine_avanc_curso',
+    'charset' => 'utf8'
 ];
 
 $config = new \Doctrine\ORM\Configuration();
 $config->setMetadataCacheImpl($cache);
-$driverImpl = $config->newDefaultAnnotationDriver($paths);
+$driverImpl = $config->newDefaultAnnotationDriver($paths, false);
 $config->setMetadataDriverImpl($driverImpl);
 $config->setQueryCacheImpl($cache);
 $config->setProxyDir(__DIR__ . '/../proxy');

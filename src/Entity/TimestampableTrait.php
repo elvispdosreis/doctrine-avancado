@@ -8,16 +8,17 @@
 
 namespace SON\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
 trait TimestampableTrait
 {
     /**
-     * @Column(type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @Column(type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $updatedAt;
 
@@ -30,9 +31,7 @@ trait TimestampableTrait
     }
 
     /**
-     * //pre-persist -> antes de inserir a entidade no banco de dados
-     * @param mixed $createdAt
-     * @PrePersist
+     * @ORM\PrePersist
      */
     public function setCreatedAt()
     {
@@ -49,8 +48,8 @@ trait TimestampableTrait
 
     /**
      * @param mixed $updatedAt
-     * @PrePersist
-     * @PreUpdate
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
      */
     public function setUpdatedAt()
     {

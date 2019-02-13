@@ -2,10 +2,11 @@
 
 namespace SON\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="SON\Entity\ProductRepository")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="products")
  */
@@ -26,7 +27,7 @@ class Product
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Price", mappedBy="product",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="\SON\Entity\Price", mappedBy="product",cascade={"persist"}, fetch="LAZY")
      */
     private $prices;
 
@@ -71,12 +72,15 @@ class Product
         return $this;
     }
 
-    public function addPrice(Price $price){
+    public function addPrice(Price $price)
+    {
         $this->prices->add($price);
+        $price->setProduct($this);
         return $this;
     }
 
-    public function getPrices(){
+    public function getPrices()
+    {
         return $this->prices;
     }
 
