@@ -155,10 +155,18 @@ $query = $qb->select('p', 'pr', 'sc')
     ->setMaxResults(10)
     ->setFirstResult(0);
 
+
 $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query, $fetchJoinCollection = true);
+echo count($paginator) . "\t";
+$results = $paginator->getIterator()->getArrayCopy();
+foreach($paginator as $product){
+    echo $product->getId() . "\t";
+}
+
+//$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query, $fetchJoinCollection = true);
 
 
-$results = $paginator->getQuery()->getArrayResult();
+//$results = $paginator->getQuery()->getArrayResult();
 
-echo count($results);
+//echo count($results);
 //dump($results);
