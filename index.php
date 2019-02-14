@@ -126,16 +126,26 @@ foreach ($arr as &$value) {
     $i = 1;
     $x = rand(1, 5);
     while ($i <= $x) {
-        $i++;
         $price = new \SON\Entity\Price();
         $price->setList((rand(100, 500) / 10));
         $product->addPrice($price);
+
+        $y = 1;
+        $z = rand(1, 3);
+        while ($y <= $z) {
+            $stock = new \SON\Entity\Stock();
+            $stock->setWarehouseId($y);
+            $stock->setQuantity(rand(1, 200));
+            $product->addStock($stock);
+            $y++;
+        }
+        $i++;
     }
 
     $entityManager->persist($product);
     $entityManager->flush();
 }
-*/
+ */
 
 
 $qb = $entityManager->createQueryBuilder();

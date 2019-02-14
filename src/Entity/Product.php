@@ -31,9 +31,15 @@ class Product
      */
     private $prices;
 
+    /**
+     * @ORM\OneToMany(targetEntity="\SON\Entity\Stock", mappedBy="product",cascade={"persist"}, fetch="LAZY")
+     */
+    private $stocks;
+
     public function __construct()
     {
         $this->prices = new ArrayCollection();
+        $this->stocks = new ArrayCollection();
     }
 
     /**
@@ -82,6 +88,18 @@ class Product
     public function getPrices()
     {
         return $this->prices;
+    }
+
+    public function addStock(Stock $stock)
+    {
+        $this->stocks->add($stock);
+        $stock->setProduct($this);
+        return $this;
+    }
+
+    public function getStocks()
+    {
+        return $this->stock;
     }
 
 }
