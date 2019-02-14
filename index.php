@@ -149,11 +149,12 @@ foreach ($arr as &$value) {
 
 
 $qb = $entityManager->createQueryBuilder();
-$query = $qb->select('p', 'pr')
+$query = $qb->select('p', 'pr', 'sc')
     ->from(\SON\Entity\Product::class, 'p')
     ->leftJoin('p.prices', 'pr')
+    ->leftJoin('p.stocks', 'sc')
     ->setMaxResults(10)
-    ->setFirstResult(20);
+    ->setFirstResult(0);
 
 $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query, $fetchJoinCollection = true);
 
