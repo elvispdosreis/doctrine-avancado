@@ -87,7 +87,7 @@ class Product
 
     public function getPrices()
     {
-        return $this->prices;
+        return $this->prices->toArray();;
     }
 
     public function addStock(Stock $stock)
@@ -99,7 +99,7 @@ class Product
 
     public function getStocks()
     {
-        return $this->stock;
+        return $this->stocks->toArray();
     }
 
 }

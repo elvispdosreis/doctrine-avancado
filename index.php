@@ -148,20 +148,25 @@ foreach ($arr as &$value) {
 
 
 $qb = $entityManager->createQueryBuilder();
-$query = $qb->select('p', 'pr', 'sc')
+$query = $qb->select('p')
     ->from(\SON\Entity\Product::class, 'p')
-    ->leftJoin('p.prices', 'pr')
-    ->leftJoin('p.stocks', 'sc')
     ->setMaxResults(10)
     ->setFirstResult(0);
 
 
-$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query, $fetchJoinCollection = true);
+$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query, $fetchJoinCollection = false);
 echo count($paginator) . "\t";
 $results = $paginator->getIterator()->getArrayCopy();
+
+$serializer = JMS\Serializer\SerializerBuilder::create()->build();
+
+print_r($serializer->toArray($results));
+
+/*
 foreach($paginator as $product){
     echo $product->getId() . "\t";
 }
+*/
 
 //$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query, $fetchJoinCollection = true);
 
