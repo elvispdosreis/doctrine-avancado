@@ -1,8 +1,9 @@
 {
     "require": {
-        "doctrine/orm": "2.6",
         "symfony/var-dumper": "4.2",
-        "jms/serializer": "^1.13"
+        "jms/serializer": "^1.13",
+        "kafoso/doctrine-firebird-driver": "^2.6",
+        "doctrine/orm": "^2.6"
     },
     "autoload": {
         "psr-4": {

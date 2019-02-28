@@ -10,9 +10,20 @@ $cache = new \Doctrine\Common\Cache\ArrayCache();
 
 $dbParams = [
     'driver' => 'pdo_mysql',
+    'host' => 'localhost',
     'user' => 'root',
     'password' => '101010',
     'dbname' => 'son_doctrine_avanc_curso',
+    'charset' => 'utf8'
+];
+
+
+$dbParams = [
+    'driver_class' => 'Kafoso\DoctrineFirebirdDriver\Driver\FirebirdInterbase\Driver',
+    'host' => '127.0.0.1',
+    'user' => 'SYSDBA',
+    'password' => 'masterkey',
+    'dbname' => 'd:/music_library.fdb',
     'charset' => 'utf8'
 ];
 
