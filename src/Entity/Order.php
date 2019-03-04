@@ -27,7 +27,7 @@ class Order
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="\SON\Entity\Invoice", inversedBy="order", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="\SON\Entity\Invoice", mappedBy="order", cascade={"persist"})
      * @ORM\JoinColumn(name="id_venda", referencedColumnName="fk_venda")
      */
     private $invoice;

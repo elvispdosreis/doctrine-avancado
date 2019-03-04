@@ -25,7 +25,6 @@ class Invoice
      */
     private $id;
 
-
     /**
      *  @ORM\OneToOne(targetEntity="\SON\Entity\Order", inversedBy="invoice", cascade={"persist"})
      */
