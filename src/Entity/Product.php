@@ -90,7 +90,7 @@ class Product
 
     public function getPrices()
     {
-        return $this->prices->toArray();;
+        return $this->prices->toArray();
     }
 
     public function addStock(Stock $stock)

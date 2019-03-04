@@ -1,6 +1,6 @@
 {
     "require": {
-        "doctrine/orm": "2.6",
+        "doctrine/orm": "^2.6",
         "jms/serializer": "^1.13",
         "symfony/var-dumper": "4.2"
     },
