@@ -8,6 +8,7 @@
 
 namespace SON\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,6 +56,11 @@ class Order
     {
         $this->invoice = $invoice;
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->invoice = new ArrayCollection();
     }
 
 }
