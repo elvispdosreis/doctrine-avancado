@@ -4,6 +4,7 @@ namespace SON\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity(repositoryClass="SON\Entity\ProductRepository")
@@ -18,11 +19,13 @@ class Product
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Groups ({"list", "details"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string")
+     * @JMS\Groups ({"list", "details"})
      */
     private $name;
 
@@ -101,5 +104,23 @@ class Product
     {
         return $this->stocks->toArray();
     }
+
+    /**
+     * @JMS\Groups ({"list"})
+     *
+     */
+    private $stock = 0;
+
+    /**
+     * @return mixed
+     * @JMS\PreSerialize
+     */
+    public function getStock()
+    {
+        foreach ($this->stocks as $stock) {
+            $this->stock += $stock->getQuantity();
+        }
+    }
+
 
 }

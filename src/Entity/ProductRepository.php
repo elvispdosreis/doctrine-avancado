@@ -8,6 +8,7 @@
 
 namespace SON\Entity;
 
+use JMS\Serializer\Annotation as JMS;
 
 class ProductRepository extends AbstractRepository
 {

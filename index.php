@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
+\Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
 
 require_once __DIR__ . '/src/doctrine.php';
 
@@ -148,25 +149,28 @@ foreach ($arr as &$value) {
 
 
 $qb = $entityManager->createQueryBuilder();
-$query = $qb->select('p')
+$query = $qb->select('p', 'pr', 'sc')
     ->from(\SON\Entity\Product::class, 'p')
+    ->leftJoin('p.prices', 'pr')
+    ->leftJoin('p.stocks', 'sc')
     ->setMaxResults(10)
     ->setFirstResult(0);
 
 
-$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query, $fetchJoinCollection = false);
-echo count($paginator) . "\t";
-$results = $paginator->getIterator()->getArrayCopy();
-
 $serializer = JMS\Serializer\SerializerBuilder::create()->build();
 
-print_r($serializer->toArray($results));
 
-/*
+$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query, $fetchJoinCollection = true);
+
+$results = $paginator->getIterator()->getArrayCopy();
+$group = \JMS\Serializer\SerializationContext::create()->setGroups(['details']);
+echo $jsonContent = $serializer->serialize($results, 'json', $group);
+echo count($paginator) . "\t";
+
+
 foreach($paginator as $product){
     echo $product->getId() . "\t";
 }
-*/
 
 //$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query, $fetchJoinCollection = true);
 
