@@ -7,6 +7,7 @@
  */
 
 namespace SON\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,7 +27,8 @@ class Invoice
     private $id;
 
     /**
-     *  @ORM\OneToOne(targetEntity="\SON\Entity\Order", inversedBy="invoice", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Order", inversedBy="invoice", cascade={"persist"})
+     * @ORM\JoinColumn(name="fk_venda", referencedColumnName="id_venda")
      */
     private $order;
 

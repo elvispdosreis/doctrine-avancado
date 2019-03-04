@@ -27,9 +27,34 @@ class Order
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="\SON\Entity\Invoice", mappedBy="order", cascade={"persist"})
-     * @ORM\JoinColumn(name="id_venda", referencedColumnName="fk_venda")
+     * @ORM\OneToOne(targetEntity="Invoice", mappedBy="order", cascade={"persist"})
      */
     private $invoice;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoice()
+    {
+        return $this->invoice;
+    }
+
+    /**
+     * @param mixed $invoice
+     * @return Order
+     */
+    public function setInvoice($invoice)
+    {
+        $this->invoice = $invoice;
+        return $this;
+    }
 
 }
