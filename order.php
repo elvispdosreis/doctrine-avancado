@@ -7,8 +7,8 @@ require_once __DIR__ . '/src/doctrine.php';
 
 $entityManager = getEntityManager();
 
-$order = new \SON\Entity\Order();
+$order = $entityManager->getRepository(\SON\Entity\Order::class)->find(1);
 $invoice = new \SON\Entity\Invoice();
+$invoice->setNumber(2);
 $order->setInvoice($invoice);
-$entityManager->persist($order);
 $entityManager->flush();
